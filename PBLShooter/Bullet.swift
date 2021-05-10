@@ -12,7 +12,9 @@ class Bullet : SKSpriteNode {
     
     init(_ point: CGPoint) {
         super.init(texture: nil, color: .green, size: CGSize(width: 50, height: 5))
-        self.position = point        
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 5))
+        self.physicsBody?.isDynamic = false
+        self.position = point
     }
     
     required init?(coder aDecoder: NSCoder) {

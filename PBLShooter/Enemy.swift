@@ -15,6 +15,8 @@ class Enemy: SKSpriteNode {
     init() {
         super.init(texture: nil, color: .red, size: CGSize(width: 40, height: 20))
         self.name = "enemy"
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 40, height: 20))
+        self.physicsBody?.isDynamic = false
     }
     
     required init?(coder aDecoder: NSCoder) {

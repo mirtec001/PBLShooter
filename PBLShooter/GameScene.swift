@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let mySprite = SKSpriteNode(color: .blue, size: CGSize(width: 50, height: 50))
     var xSpeed: CGFloat = 0
@@ -23,9 +23,11 @@ class GameScene: SKScene {
     
     var enemySprites: [SKSpriteNode] = [SKSpriteNode]()
     
+    
     override func didMove(to view: SKView) {
         mySprite.position = CGPoint(x: xSpeed, y: ySpeed)
-        
+        mySprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+        mySprite.physicsBody?.isDynamic = false
         self.addChild(mySprite)
         
         for _ in 0..<20 {
@@ -35,6 +37,8 @@ class GameScene: SKScene {
             enemySprites.append(enemySprite)
 
         }
+        
+        physicsWorld.contactDelegate = self
     }
     
     
