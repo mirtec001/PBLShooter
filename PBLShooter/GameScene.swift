@@ -42,7 +42,11 @@ class GameScene: SKScene {
     override func keyDown(with event: NSEvent) {
         switch event.characters {
         case " ": // Spacebar -- keep for shooting
-            print("Something happened")
+            let bullet = Bullet(mySprite.position)
+            bullet.name = "fireBullet"
+            addChild(bullet)
+            bullet.fireBullet()
+            break
         case "w": // W - up
             print("move up")
             ySpeed = velocity
@@ -112,6 +116,12 @@ class GameScene: SKScene {
                 let enemySprite = Enemy().newEnemy()
                 addChild(enemySprite)
                 enemySprites.append(enemySprite)
+            }
+        }
+        
+        self.enumerateChildNodes(withName: "fireBullet") { (node: SKNode, nil) in
+            if node.position.x > 900 {
+                node.removeFromParent()
             }
         }
     }
